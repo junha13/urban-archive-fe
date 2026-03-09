@@ -8,9 +8,9 @@ const api = axios.create({
 
 // 모든 요청에 token 주입
 api.interceptors.request.use((config) => {
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+        config.headers.Authorization = `Bearer ${accessToken}`
     }
     return config;
 })

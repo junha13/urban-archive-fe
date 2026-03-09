@@ -1,12 +1,8 @@
-<template>
-<div>
-<h2>dddd</h2>
-</div>
-
-</template>
 <script setup>
-import { ref, onMounted } from 'vue'
-
-
-
+import {Button} from '@/components/ui/button'
 </script>
+
+<template>
+  <Button>Button</Button>
+</template>
+<style lang=""></style>
