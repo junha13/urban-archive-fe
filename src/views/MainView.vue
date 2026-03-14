@@ -1,8 +1,13 @@
 <script setup>
-import {Button} from '@/components/ui/button'
 </script>
 
 <template>
-  <Button>Button</Button>
+  <div class="flex flex-col min-h-screen">
+
+    <main class="flex-1">
+
+
+    </main>
+
+  </div>
 </template>
-<style lang=""></style>

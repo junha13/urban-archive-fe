@@ -66,3 +66,20 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* 제목폰트(Medium) */
+@font-face {
+  font-family: 'a2zMedium';
+  src: url('@/assets/fonts/a2z-5Medium.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+/* 기본폰트(Light) */
+@font-face {
+  font-family: 'a2zLight';
+  src: url('@/assets/fonts/a2z-5Light.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
