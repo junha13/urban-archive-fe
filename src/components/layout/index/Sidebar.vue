@@ -18,7 +18,7 @@ const currentSubItems = computed(() => currentMenu.value ? currentMenu.value.chi
 <template>
   <aside 
     v-if="currentSubItems.length > 0"
-    class="hidden sm:block sticky top-28 ml-10 w-[140px] h-fit shrink-0 font-a2zM"
+    class="hidden sm:block sticky top-28 ml-10 w-[130px] h-fit shrink-0 font-a2zM"
   >
     <nav class="relative p-2 bg-slate-950/80 backdrop-blur-xl rounded-[25px] border border-white/5 shadow-2xl">
       

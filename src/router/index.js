@@ -15,6 +15,7 @@ import historyView from '../views/about/HistoryView.vue'
 import UrbanView from '../views/archive/UrbanView.vue'
 import MajorView from '../views/archive/MajorView.vue'
 import ExtraView from '../views/archive/ExtraView.vue'
+import RecordUploadView from '@/views/archive/record/RecordUploadView.vue'
 
 // 자료공유 (Share)
 import NewsView from '../views/share/NewsView.vue'
@@ -59,6 +60,7 @@ const router = createRouter({
             { path: 'urban', name: 'archive-urban', component: UrbanView },
             { path: 'major', name: 'archive-major', component: MajorView },
             { path: 'extra', name: 'archive-extra', component: ExtraView },
+            { path: 'upload', name: 'archive-upload', component: RecordUploadView }
           ]
         },
         // 자료공유
