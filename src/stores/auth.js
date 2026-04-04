@@ -31,6 +31,19 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  async function register(registerData) {
+    try {
+      const response = await api.post('/api/auth/join', registerData);
+
+      if (response.status === 200 || response.data.result === true) {
+        return true;
+      }
+      return false;
+    } catch (error) {
+      return false;
+    }
+  }
+
   function logout() {
     accessToken.value = '';
     userInfo.value = null;
@@ -40,5 +53,5 @@ export const useAuthStore = defineStore('auth', () => {
 
   // 정보 수정 함수 등등 추가
 
-  return { accessToken, userInfo, isAuthenticated, login, logout}
+  return { accessToken, userInfo, isAuthenticated, login, register, logout}
 })
