@@ -14,7 +14,7 @@ const recordStore = useRecordStore()
 const authStore = useAuthStore()
 
 const form = reactive({
-  userNumber: authStore.userInfo?.user_number ?? null,
+  userNumber: authStore.userInfo?.userNumber ?? authStore.userInfo?.user_number ?? null,
   subjectNumber: null,
   subjectName: '',
   title: '',
@@ -37,7 +37,7 @@ const mockSubjects = [
   { id: 3, name: '도시계획론' }, { id: 4, name: '스마트도시개론' }
 ]
 const mockUsers = [
-  { user_number: 101, name: '김준하', student_id: '20201234' },
+  { user_number: 1, name: '김준하', student_id: '20201234' },
   { user_number: 102, name: '이민수', student_id: '20215678' }
 ]
 
@@ -81,14 +81,18 @@ const submitRecord = async () => {
     return
   }
   const recordRequest = {
-    title: form.title, subject_number: form.subjectNumber,
-    description: form.description, grade: form.grade,
-    semester: form.semester, user_numbers: taggedUsers.value.map(u => u.user_number)
+    userNumber: form.userNumber,
+    subjectNumber: form.subjectNumber,
+    title: form.title,
+    description: form.description,
+    grade: form.grade,
+    semester: form.semester,
+    taggedUserNumbers: taggedUsers.value.map(u => u.user_number)
   }
   const result = await recordStore.insertRecord(recordRequest, file.value)
   if (result) {
     alert('등록되었습니다.')
-    router.push('/archive')
+    router.push('/archive/urban')
   }
 }
 </script>

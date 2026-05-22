@@ -11,10 +11,8 @@ import IntroView from '../views/about/IntroView.vue'
 import LabsView from '../views/about/LabsView.vue'
 import historyView from '../views/about/HistoryView.vue' 
 
-// 아카이브 (Archive)
-import UrbanView from '../views/archive/UrbanView.vue'
-import MajorView from '../views/archive/MajorView.vue'
-import ExtraView from '../views/archive/ExtraView.vue'
+import RecordListView from '@/views/archive/record/RecordListView.vue'
+import RecordDetailView from '@/views/archive/record/RecordDetailView.vue'
 import RecordUploadView from '@/views/archive/record/RecordUploadView.vue'
 
 // 자료공유 (Share)
@@ -57,9 +55,25 @@ const router = createRouter({
           path: 'archive',
           redirect: '/archive/urban',
           children: [
-            { path: 'urban', name: 'archive-urban', component: UrbanView },
-            { path: 'major', name: 'archive-major', component: MajorView },
-            { path: 'extra', name: 'archive-extra', component: ExtraView },
+            {
+              path: 'urban',
+              name: 'archive-urban',
+              component: RecordListView,
+              meta: { archiveTitle: '도시설계', archiveSubtitle: '도시설계 기록물을 탐색하고 상세 정보를 확인할 수 있습니다.' },
+            },
+            {
+              path: 'major',
+              name: 'archive-major',
+              component: RecordListView,
+              meta: { archiveTitle: '전공과제', archiveSubtitle: '전공과제 기록물을 탐색하고 상세 정보를 확인할 수 있습니다.' },
+            },
+            {
+              path: 'extra',
+              name: 'archive-extra',
+              component: RecordListView,
+              meta: { archiveTitle: '교외활동', archiveSubtitle: '교외활동 기록물을 탐색하고 상세 정보를 확인할 수 있습니다.' },
+            },
+            { path: 'detail/:recordNumber', name: 'archive-detail', component: RecordDetailView },
             { path: 'upload', name: 'archive-upload', component: RecordUploadView }
           ]
         },

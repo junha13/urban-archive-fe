@@ -13,6 +13,18 @@ const currentMenu = computed(() => {
 })
 
 const currentSubItems = computed(() => currentMenu.value ? currentMenu.value.children : [])
+
+const activeChildPath = computed(() => {
+  if (route.name === 'archive-detail') {
+    const archiveSection = typeof route.query.section === 'string'
+      ? route.query.section
+      : 'urban'
+
+    return `/archive/${archiveSection}`
+  }
+
+  return route.path
+})
 </script>
 
 <template>
@@ -34,13 +46,13 @@ const currentSubItems = computed(() => currentMenu.value ? currentMenu.value.chi
           @click="router.push(child.path)"
           :class="cn(
             'relative flex items-center h-10 px-3 rounded-2xl text-[13px] transition-all duration-500 ease-in-out group',
-            route.path === child.path 
+            activeChildPath === child.path 
               ? 'text-white' 
               : 'text-slate-500 hover:text-slate-200'
           )"
         >
           <div 
-            v-if="route.path === child.path"
+            v-if="activeChildPath === child.path"
             class="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl shadow-inner"
           ></div>
 
@@ -48,7 +60,7 @@ const currentSubItems = computed(() => currentMenu.value ? currentMenu.value.chi
 
           <span 
             class="relative z-10 w-0.5 rounded-full transition-all duration-500 ease-out mr-2",
-            :class="route.path === child.path ? 'h-3 bg-cyan-300 shadow-[0_0_10px_#67e8f9]' : 'h-1 bg-slate-700 group-hover:bg-slate-500'"
+            :class="activeChildPath === child.path ? 'h-3 bg-cyan-300 shadow-[0_0_10px_#67e8f9]' : 'h-1 bg-slate-700 group-hover:bg-slate-500'"
           ></span>
           
           <span class="relative z-10 truncate transition-transform duration-300 group-hover:translate-x-0.5">
