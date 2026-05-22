@@ -100,8 +100,9 @@ const router = createRouter({
       component: LoginView,
     },
     {
-      path: '/Register',
-      name: 'Register',
+      path: '/register',
+      alias: '/Register',
+      name: 'register',
       component: RegisterView,
     },
   ],

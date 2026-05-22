@@ -14,8 +14,9 @@ const recordStore = useRecordStore()
 const authStore = useAuthStore()
 
 const form = reactive({
-  userNumber: authStore.user?.user_number,
+  userNumber: authStore.userInfo?.user_number ?? null,
   subjectNumber: null,
+  subjectName: '',
   title: '',
   description: '',
   grade: 1,
@@ -49,8 +50,8 @@ const filteredUsers = computed(() =>
 )
 
 const selectSubject = (s) => {
-  form.subject_number = s.id
-  form.subject_name = s.name
+  form.subjectNumber = s.id
+  form.subjectName = s.name
   subjectQuery.value = s.name
   isSubjectSearching.value = false
 }
@@ -75,19 +76,19 @@ const removeTag = (id) => {
 }
 
 const submitRecord = async () => {
-  if (!form.title || !form.subject_number || !file.value) {
+  if (!form.title || !form.subjectNumber || !file.value) {
     alert('필수 항목을 모두 채워주세요.')
     return
   }
   const recordRequest = {
-    title: form.title, subject_number: form.subject_number,
+    title: form.title, subject_number: form.subjectNumber,
     description: form.description, grade: form.grade,
     semester: form.semester, user_numbers: taggedUsers.value.map(u => u.user_number)
   }
   const result = await recordStore.insertRecord(recordRequest, file.value)
   if (result) {
     alert('등록되었습니다.')
-    router.push('/archive/list')
+    router.push('/archive')
   }
 }
 </script>
@@ -135,7 +136,7 @@ const submitRecord = async () => {
               <div v-if="isSubjectSearching && filteredSubjects.length" class="absolute z-50 left-0 right-0 top-full bg-white border border-slate-200 shadow-xl py-1">
                 <button v-for="s in filteredSubjects" :key="s.id" @click="selectSubject(s)"
                   class="w-full text-left px-6 py-2.5 text-xs hover:bg-slate-50 font-a2zM text-slate-700 flex justify-between">
-                  {{ s.name }} <Check v-if="form.subject_number === s.id" class="w-3 h-3 text-slate-900" />
+                  {{ s.name }} <Check v-if="form.subjectNumber === s.id" class="w-3 h-3 text-slate-900" />
                 </button>
               </div>
             </div>
